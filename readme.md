@@ -60,3 +60,13 @@ tp_global/
 │   └── ...
 │
 └── README.md
+
+
+# Cloner le projet
+
+```bash
+git clone https://github.com/SOULAIMAN-BOUALI2/full_stack_voiture.git
+
+cd full_stack_voiture
+
+docker compose up --build
