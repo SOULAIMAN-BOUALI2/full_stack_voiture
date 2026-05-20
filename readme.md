@@ -46,7 +46,7 @@ Le projet permet la gestion des voitures via une API REST et une interface React
 
 # Structure du projet
 
-```bash
+```text
 tp_global/
 │
 ├── docker-compose.yml
@@ -60,8 +60,9 @@ tp_global/
 │   └── ...
 │
 └── README.md
+```
 
-```text id="md02"
+---
 
 # Cloner le projet
 
@@ -71,3 +72,4 @@ git clone https://github.com/SOULAIMAN-BOUALI2/full_stack_voiture.git
 cd full_stack_voiture
 
 docker compose up --build
+```
