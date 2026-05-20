@@ -1,0 +1,55 @@
+services:
+
+  mysql:
+    image: mysql:8.0
+
+    container_name: mysql
+
+    ports:
+      - "3307:3306"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: miola
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+    networks:
+      - spring-net
+
+  backend:
+
+    build: ./tp_global
+
+    container_name: app
+
+    ports:
+      - "9090:8082"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - spring-net
+
+  frontend:
+
+    build: ./frontend
+
+    container_name: frontend
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - backend
+
+    networks:
+      - spring-net
+
+networks:
+  spring-net:
