@@ -61,6 +61,7 @@ tp_global/
 │
 └── README.md
 
+---
 
 # Cloner le projet
 
