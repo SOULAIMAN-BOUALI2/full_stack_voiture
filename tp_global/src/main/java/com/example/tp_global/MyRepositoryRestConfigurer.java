@@ -13,14 +13,14 @@ public class MyRepositoryRestConfigurer implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         config.exposeIdsFor(Voiture.class);
         cors.addMapping("/api/**")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(false)
                 .maxAge(3600);
         
         // Also allow root path if needed
         cors.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
     }
 }

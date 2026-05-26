@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import API_BASE_URL from '../config';
 
 export default class VoitureListe extends Component {
 
@@ -17,7 +18,7 @@ export default class VoitureListe extends Component {
 
     componentDidMount() {
 
-        axios.get("http://localhost:9090/api/voitures")
+        axios.get(`${API_BASE_URL}/api/voitures`)
             .then(response => {
                 if (response.data._embedded && response.data._embedded.voitures) {
                     this.setState({ voitures: response.data._embedded.voitures });
@@ -28,7 +29,7 @@ export default class VoitureListe extends Component {
             .catch(error => {
                 console.error("Error fetching voitures:", error);
                 // Fallback to non-api path if /api/ fails
-                axios.get("http://localhost:9090/voitures")
+                axios.get(`${API_BASE_URL}/voitures`)
                     .then(res => this.setState({ voitures: res.data }))
                     .catch(err => console.error("Error fetching from /voitures:", err));
             });
@@ -36,7 +37,7 @@ export default class VoitureListe extends Component {
 
     deleteVoiture = (voitureId) => {
 
-        axios.delete("http://localhost:9090/api/voitures/" + voitureId)
+        axios.delete(`${API_BASE_URL}/api/voitures/` + voitureId)
             .then(response => {
                 alert("Voiture supprimée avec succès.");
                 this.setState({
@@ -47,7 +48,7 @@ export default class VoitureListe extends Component {
             })
             .catch(error => {
                 // Try non-api path
-                axios.delete("http://localhost:9090/voitures/" + voitureId)
+                axios.delete(`${API_BASE_URL}/voitures/` + voitureId)
                     .then(res => {
                         alert("Voiture supprimée avec succès.");
                         this.setState({

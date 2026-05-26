@@ -5,6 +5,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusSquare, faSave, faUndo, faEdit, faList } from '@fortawesome/free-solid-svg-icons';
 import MyToast from './MyToast';
+import API_BASE_URL from '../config';
 
 const Voiture = () => {
     const [voiture, setVoiture] = useState({
@@ -24,14 +25,14 @@ const Voiture = () => {
 
     useEffect(() => {
         if (id) {
-            axios.get("http://localhost:9090/api/voitures/" + id)
+            axios.get(`${API_BASE_URL}/api/voitures/` + id)
                 .then(response => {
                     if (response.data) {
                         setVoiture(response.data);
                     }
                 })
                 .catch(error => {
-                    axios.get("http://localhost:9090/voitures/" + id)
+                    axios.get(`${API_BASE_URL}/voitures/` + id)
                         .then(res => setVoiture(res.data))
                         .catch(err => console.error("Error fetching voiture:", err));
                 });
@@ -57,7 +58,7 @@ const Voiture = () => {
 
         if (id) {
             // Update
-            axios.put("http://localhost:9090/api/voitures/" + id, voitureData)
+            axios.put(`${API_BASE_URL}/api/voitures/` + id, voitureData)
                 .then(response => {
                     if (response.data != null) {
                         setShow(true);
@@ -68,7 +69,7 @@ const Voiture = () => {
                     }
                 })
                 .catch(error => {
-                    axios.put("http://localhost:9090/voitures/" + id, voitureData)
+                    axios.put(`${API_BASE_URL}/voitures/` + id, voitureData)
                         .then(res => {
                             setShow(true);
                             setType("success");
@@ -85,7 +86,7 @@ const Voiture = () => {
                 });
         } else {
             // Save
-            axios.post("http://localhost:9090/api/voitures", voitureData)
+            axios.post(`${API_BASE_URL}/api/voitures`, voitureData)
                 .then(response => {
                     if (response.data != null) {
                         setShow(true);
@@ -96,7 +97,7 @@ const Voiture = () => {
                     }
                 })
                 .catch(error => {
-                    axios.post("http://localhost:9090/voitures", voitureData)
+                    axios.post(`${API_BASE_URL}/voitures`, voitureData)
                         .then(res => {
                             setShow(true);
                             setType("success");
