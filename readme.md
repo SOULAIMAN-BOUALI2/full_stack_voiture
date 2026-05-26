@@ -38,7 +38,14 @@ minikube image build -t frontend-k8s ./frontend
 ```bash
 kubectl apply -f k8s/
 ```
-*Attendez que tous les pods soient en état "Running"* : `kubectl get pods`
+
+## Vérification des pods Kubernetes
+
+```bash
+kubectl get pods
+```
+
+Tous les pods doivent être en état `Running`.
 
 ### 4. Accéder à l'application
 Une fois que les pods sont en état "Running", lancez cette commande :
